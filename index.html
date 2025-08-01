@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Based Background (User Input)</title>
+    <style>
+        body {
+            background-image: url(Timebasedbg/Afternoon.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;  
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+            transition: background-image 0.5s ease;
+        }
+        input, button{
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        </style>
+</head>
+<body>
+    <h1>Enter time to change background</h1>
+    <input type="time" id="timeInput"/>
+    <button onclick="changeBackground()">Change Background</button>
+    <script>
+        function changeBackground() {
+            const timeValue = document.getElementById('timeInput').value;
+            if (!timeValue) {
+                alert('Please enter a valid time.');
+                return;
+            }
+
+            const hour = parseInt(timeValue.split(':')[0], 10);
+            let backgroundImage = '';
+
+            if (hour >= 6 && hour < 12) {
+                backgroundImage = 'Timebasedbg/GoodMorning.jpg'; // Replace with your morning image URL
+            } else if (hour >= 12 && hour < 19) {
+                backgroundImage = 'Timebasedbg/Evening.jpg'; // Replace with your evening image URL
+            } else {
+                backgroundImage = 'Timebasedbg/Night.jpg'; // Replace with your night image URL
+            }
+
+            document.body.style.backgroundImage = `url('${backgroundImage}')`;
+        }
+    </script>
+</body>
+</html>
